@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResearchOrbit | Coming Soon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #09090b; /* Zinc 950 */
+            color: #fafafa; /* Zinc 50 */
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 40px rgba(56, 189, 248, 0.3);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-blue-500/30 selection:text-blue-200">
+
+    <!-- Background Decoration -->
+    <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-blue-900/10 blur-[120px]"></div>
+        <div class="absolute top-[60%] -right-[10%] w-[40%] h-[40%] rounded-full bg-teal-900/10 blur-[100px]"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="relative z-10 p-6 md:p-10 flex justify-between items-center w-full max-w-7xl mx-auto">
+        <div class="flex items-center gap-2">
+            <i data-lucide="atom" class="w-6 h-6 text-blue-400"></i>
+            <span class="text-xl font-semibold tracking-tight">Research<span class="text-blue-400">Orbit</span></span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-10 flex-grow flex flex-col items-center justify-center px-6 text-center max-w-4xl mx-auto">
+        
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-xs font-medium text-zinc-400 mb-8">
+            <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+            Launching Soon
+        </div>
+
+        <h1 class="text-4xl md:text-6xl font-semibold tracking-tight leading-tight mb-6 glow-text">
+            Elevating Medical Research <br class="hidden md:block"/> & Publication.
+        </h1>
+        
+        <p class="text-lg md:text-xl text-zinc-400 mb-10 max-w-2xl font-light">
+            Expert assistance in medical thesis formulation, comprehensive research, manuscript drafting, and seamless paper publication. We guide your academic journey from concept to citation.
+        </p>
+
+        <!-- Notify Form -->
+        <form id="notify-form" class="w-full max-w-md flex flex-col sm:flex-row gap-3">
+            <input 
+                type="email" 
+                id="email"
+                placeholder="Enter your email address" 
+                required
+                class="flex-grow bg-zinc-900/50 border border-zinc-800 rounded-lg px-4 py-3 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all"
+            >
+            <button 
+                type="submit"
+                class="bg-zinc-100 text-zinc-900 hover:bg-white font-medium text-sm px-6 py-3 rounded-lg transition-colors whitespace-nowrap flex items-center justify-center gap-2"
+            >
+                Notify Me
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+        </form>
+
+        <p id="success-message" class="mt-4 text-sm text-emerald-400 hidden">
+            Thank you! We'll let you know when we launch.
+        </p>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 p-6 text-center text-sm text-zinc-600">
+        <p>&copy; <span id="year"></span> ResearchOrbit. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Handle form submission
+        const form = document.getElementById('notify-form');
+        const successMessage = document.getElementById('success-message');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const emailInput = document.getElementById('email');
+            
+            // Simulate API call
+            if(emailInput.value) {
+                form.querySelector('button').innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i>';
+                lucide.createIcons();
+                
+                setTimeout(() => {
+                    form.classList.add('hidden');
+                    successMessage.classList.remove('hidden');
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
